@@ -1,7 +1,8 @@
+<%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>My First JavaEE</title>
+    <title>Error</title>
     <style>
         <%@include file="style.css" %>
     </style>
@@ -18,7 +19,17 @@
         </ul>
     </nav>
     <article>
-        <p>Start page</p>
+        <c:choose>
+            <c:when test="${errorCode == '403'}">
+                <p>Error <%=request.getAttribute("errorCode")%>. Sorry, access to this page denied.</p>
+            </c:when>
+            <c:when test="${errorCode == '404'}">
+                <p>Error <%=request.getAttribute("errorCode")%>. Sorry, this page couldn't be found.</p>
+            </c:when>
+            <c:otherwise>
+                <p>Error unknown.</p>
+            </c:otherwise>
+        </c:choose>
     </article>
 </div>
 </body>

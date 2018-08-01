@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>My First JavaEE</title>
+    <title>Order</title>
     <style>
         <%@include file="style.css" %>
     </style>
@@ -18,7 +18,7 @@
         </ul>
     </nav>
     <article>
-        <p>Start page</p>
+        <p>Order page servlet</p>
     </article>
 </div>
 </body>
