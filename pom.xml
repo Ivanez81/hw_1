@@ -2,10 +2,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>ru.geekbrains.enterprise</groupId>
-    <artifactId>hw_1</artifactId>
+    <artifactId>JavaEE</artifactId>
     <packaging>war</packaging>
-    <version>1.0-SNAPSHOT</version>
-    <name>hw_1</name>
+    <version>0.0.2</version>
+    <name>JavaEE</name>
     <url>http://maven.apache.org</url>
     <dependencies>
         <dependency>
@@ -20,6 +20,12 @@
             <version>3.8.1</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
+
     </dependencies>
 
     <developers>
@@ -31,7 +37,7 @@
     </developers>
 
     <build>
-        <finalName>hw_1</finalName>
+        <finalName>JavaEE</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

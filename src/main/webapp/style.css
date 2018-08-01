@@ -1,0 +1,50 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+@font-face {
+    font-family: Dusha;
+    src: url(fonts/dusha.ttf);
+   }
+
+body {
+    background-color: #f8f8f8;
+    font-family: Dusha;
+}
+
+.container {
+    width: 1024px;
+    margin: 0 auto;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.menu {
+    display: flex;
+    justify-content: flex-end;
+    list-style-type: none;
+}
+
+.menu a {
+    padding: 10px 13px;
+    display: block;
+    color: #8c8c8c;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.menu a:hover {
+    color: #212121;
+}
+
+article {
+    padding-left: 50px;
+    margin-top: 20px;
+}
