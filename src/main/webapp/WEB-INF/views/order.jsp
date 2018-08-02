@@ -2,7 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>My First JavaEE</title>
+    <title>Order</title>
     <link href="<c:url value="/css/style.css"/>" rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -17,7 +17,7 @@
         </ul>
     </nav>
     <article>
-        <p>Start page</p>
+        <p>Order page servlet</p>
     </article>
 </div>
 </body>
