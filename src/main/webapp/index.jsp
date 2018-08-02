@@ -1,10 +1,9 @@
+<%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>My First JavaEE</title>
-    <style>
-        <%@include file="style.css" %>
-    </style>
+    <link href="<c:url value="/css/style.css"/>" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div class="container">

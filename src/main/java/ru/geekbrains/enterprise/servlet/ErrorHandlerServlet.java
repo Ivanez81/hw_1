@@ -12,7 +12,7 @@ public class ErrorHandlerServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("errorCode", request.getAttribute("javax.servlet.error.status_code"));
-        request.getRequestDispatcher("error.jsp").forward(request, response);
+        request.getRequestDispatcher("WEB-INF/views/error.jsp").forward(request, response);
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

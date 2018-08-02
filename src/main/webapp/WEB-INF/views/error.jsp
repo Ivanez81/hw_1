@@ -3,9 +3,7 @@
 <html>
 <head>
     <title>Error</title>
-    <style>
-        <%@include file="style.css" %>
-    </style>
+    <link href="<c:url value="/css/style.css"/>" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div class="container">

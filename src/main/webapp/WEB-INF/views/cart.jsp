@@ -1,10 +1,9 @@
+<%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Product</title>
-    <style>
-        <%@include file="style.css" %>
-    </style>
+    <title>Cart</title>
+    <link href="<c:url value="/css/style.css"/>" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div class="container">
@@ -18,7 +17,7 @@
         </ul>
     </nav>
     <article>
-        <p>Product page servlet</p>
+        <p>Cart page servlet</p>
     </article>
 </div>
 </body>
