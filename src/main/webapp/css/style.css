@@ -48,3 +48,99 @@ article {
     padding-left: 50px;
     margin-top: 20px;
 }
+
+footer {
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+footer p {
+    color: #8c8c8c;
+    font-size: 14px;
+}
+
+footer a {
+    color: #8c8c8c;
+    font-size: 12px;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: #212121;
+}
+
+#product-list-table {
+    margin-top: 10px;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#product-list-table th, td {
+    padding: 5px;
+    border: 1px solid black;
+}
+
+#product-list-table a {
+    color: #8c8c8c;
+    text-decoration: none;
+}
+
+#product-list-table a:hover {
+    color: #212121;
+}
+
+.form-button {
+    font-family: Dusha;
+    padding: 5px;
+    border-radius: 8px;
+    background-color: #efefef;
+    color: #8c8c8c;
+}
+
+.form-button:hover {
+    color: #212121;
+}
+
+.form-button:active,
+.form-button:focus {
+    outline: none;
+}
+
+.edit-input {
+    width: 100%;
+    font-family: Dusha;
+}
+
+.product-figures {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.product-figures a {
+    display: block;
+    text-decoration: none;
+}
+
+figure {
+    background: -webkit-linear-gradient(to right, rgba(248, 248, 248, 1) 0%, rgba( 127, 127, 127, 1) 100%);
+    background: -o-linear-gradient(to right, rgba(248, 248, 248, 1) 0%, rgba( 127, 127, 127, 1) 100%);
+    background: linear-gradient(to right, rgba(248, 248, 248, 1) 0%, rgba( 127, 127, 127, 1) 100%);
+    color: #212121;
+    padding: 10px;
+    width: 250px;
+    margin: 10px 10px 10px 0;
+    text-align: center;
+}
+
+figcaption {
+    color: #212121;
+}
+
+figure:hover p {
+    transform: scale(1.15);
+    transition: transform 1s;
+}
