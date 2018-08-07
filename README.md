@@ -1,2 +1,2 @@
 # JavaEE
-JavaEE + Maven + WildFly
+JavaEE + Maven + WildFly + Lombok (for POJO)
