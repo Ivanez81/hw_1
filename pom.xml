@@ -4,9 +4,10 @@
     <groupId>ru.geekbrains.enterprise</groupId>
     <artifactId>JavaEE</artifactId>
     <packaging>war</packaging>
-    <version>0.0.2</version>
+    <version>0.0.3</version>
     <name>JavaEE</name>
     <url>http://maven.apache.org</url>
+
     <dependencies>
         <dependency>
             <groupId>javax</groupId>
@@ -25,7 +26,12 @@
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.2</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
     <developers>
@@ -55,6 +61,5 @@
             </plugin>
         </plugins>
     </build>
-
 
 </project>

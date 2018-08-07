@@ -7,18 +7,15 @@
 </head>
 <body>
 <div class="container">
-    <nav>
-        <ul class="menu">
-            <li><a href="main">Main Servlet</a></li>
-            <li><a href="catalog">Catalog Servlet</a></li>
-            <li><a href="product">Product Servlet</a></li>
-            <li><a href="cart">Cart Servlet</a></li>
-            <li><a href="order">Order Servlet</a></li>
-        </ul>
-    </nav>
+
+    <jsp:include page="/WEB-INF/template/navmenu.jsp"/>
+
     <article>
         <p>Start page</p>
     </article>
+
+    <jsp:include page="/WEB-INF/template/footer.jsp"/>
+
 </div>
 </body>
 </html>

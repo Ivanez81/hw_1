@@ -1,4 +1,4 @@
-package ru.geekbrains.enterprise.servlet;
+package ru.geekbrains.enterprise.servlet.products;
 
 import ru.geekbrains.enterprise.constant.FieldConst;
 import ru.geekbrains.enterprise.dao.ProductDAO;
@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Collection;
 
-@WebServlet(name = "CatalogServlet", urlPatterns = {"/catalog"})
-public class CatalogServlet extends HttpServlet {
+@WebServlet(urlPatterns = "/product-list")
+public class ProductListServlet extends HttpServlet {
 
     @Inject
     ProductDAO productDAO;
@@ -23,6 +23,6 @@ public class CatalogServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         final Collection<Product> products = productDAO.getProducts();
         req.setAttribute(FieldConst.PRODUCTS, products);
-        req.getRequestDispatcher("WEB-INF/views/catalog.jsp").forward(req,resp);
+        req.getRequestDispatcher("WEB-INF/views/product-list.jsp").forward(req, resp);
     }
 }

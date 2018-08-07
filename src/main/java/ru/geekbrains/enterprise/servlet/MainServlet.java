@@ -12,13 +12,6 @@ import java.io.PrintWriter;
 public class MainServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // s.b. comment for test UTF8Filter this line
         req.getRequestDispatcher("WEB-INF/views/main.jsp").forward(req,resp);
-
-        /* for UTF8Filter test s.b. uncomment
-        try (PrintWriter writer = resp.getWriter()){
-            writer.println("GET: HELLO WORLD! Русский язык");
-        } */
-
     }
 }
