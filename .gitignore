@@ -58,9 +58,6 @@ fabric.properties
 
 # Editor-based Rest Client
 .idea/httpRequests
-<<<<<<< Updated upstream
 .idea
 .target
-=======
-.idea
->>>>>>> Stashed changes
+*.iml

@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = "/product-create")
+@WebServlet(urlPatterns = "/product-create-jsp")
 public class ProductCreateServlet extends HttpServlet {
 
     @Inject

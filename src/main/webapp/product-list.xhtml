@@ -4,8 +4,57 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-<f:view>
-    <h:outputLabel value="Hello, world"/>
-</f:view>
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <h:outputStylesheet library="css" name="style.css" />
+</h:head>
+<h:body>
+    <ui:include src="WEB-INF/template/menu.xhtml"/>
+
+    <h:form>
+        <h1>Product List</h1>
+        <p:dataTable id="dataTable" value="#{productListController.listProduct}" var="product">
+            <f:facet name="header">
+                <p:outputPanel style="margin: 5px;">
+                    <p:outputLabel value="Products"/>
+                </p:outputPanel>
+            </f:facet>
+            <p:column headerText="NAME" width="200">
+                <p:outputLabel value="#{product.name}"/>
+            </p:column>
+            <p:column headerText="DESCRIPTION">
+                <p:outputLabel value="#{product.description}"/>
+            </p:column>
+            <p:column headerText="DATE BEGIN" width="150" style="text-align: center;">
+                <p:outputLabel value="#{product.dateBegin}">
+                    <f:convertDateTime pattern="dd.MM.yyyy HH:mm:ss"/>
+                </p:outputLabel>
+            </p:column>
+            <p:column headerText="DATE END" width="150" style="text-align: center;">
+                <p:outputLabel value="#{product.dateEnd}">
+                    <f:convertDateTime pattern="dd.MM.yyyy HH:mm:ss"/>
+                </p:outputLabel>
+            </p:column>
+            <p:column width="30" style="text-align: center;">
+                <p:link outcome="product-edit">
+                    <i class="fa fa-edit" style="font-size: 1.5em;margin: 5px;"/>
+                    <f:param name="id" value="#{product.id}"/>
+                </p:link>
+            </p:column>
+            <p:column width="30" style="text-align: center;">
+                <p:commandLink actionListener="#{productListController.removeProductById(product.id)}"
+                               update="dataTable">
+                    <i class="fa fa-trash" style="font-size: 1.5em;margin: 5px;"/>
+                </p:commandLink>
+            </p:column>
+        </p:dataTable>
+        <p:spacer height="20"/>
+        <p:outputPanel>
+            <p:button value="CREATE" outcome="product-edit"/>
+            <p:spacer width="20"/>
+            <p:commandButton value="REFRESH" update="@form"/>
+        </p:outputPanel>
+    </h:form>
+</h:body>
 </html>
