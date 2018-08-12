@@ -7,7 +7,7 @@
 <html>
 <head>
     <title>Product List</title>
-    <link href="<c:url value="/css/style.css"/>" rel="stylesheet" type="text/css">
+    <link href="<c:url value="/resources/css/style.css"/>" rel="stylesheet" type="text/css">
 </head>
 
 <body>

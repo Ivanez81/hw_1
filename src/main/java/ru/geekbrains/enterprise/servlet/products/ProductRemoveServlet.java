@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-@WebServlet(urlPatterns = "/product-remove")
+@WebServlet(urlPatterns = "/product-remove-jsp")
 public class ProductRemoveServlet extends HttpServlet {
 
     @Inject

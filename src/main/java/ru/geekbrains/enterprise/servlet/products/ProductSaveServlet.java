@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = "/product-save")
+@WebServlet(urlPatterns = "/product-save-jsp")
 public class ProductSaveServlet extends HttpServlet {
 
     @Inject

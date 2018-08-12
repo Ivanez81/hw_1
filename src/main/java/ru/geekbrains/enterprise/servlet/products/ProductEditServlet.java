@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-@WebServlet(urlPatterns = "/product-edit")
+@WebServlet(urlPatterns = "/product-edit-jsp")
 public class ProductEditServlet extends HttpServlet {
 
     @Inject
