@@ -5,56 +5,66 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui" xmlns:component="http://java.sun.com/jsf/composite/component">
 <h:head>
-
+    <h:outputStylesheet library="css" name="style.css"/>
 </h:head>
 <h:body>
-    <ui:include src="WEB-INF/template/menu.xhtml"/>
+    <component:mainMenu/>
 
     <h:form>
-        <h1>Category List</h1>
-        <p:dataTable id="dataTable" value="#{categoryListController.listCategory}" var="category">
-            <f:facet name="header">
-                <p:outputPanel style="margin: 5px;">
-                    <p:outputLabel value="Categorys"/>
-                </p:outputPanel>
-            </f:facet>
-            <p:column headerText="NAME" width="200">
-                <p:outputLabel value="#{category.name}"/>
-            </p:column>
-            <p:column headerText="DESCRIPTION">
-                <p:outputLabel value="#{category.description}"/>
-            </p:column>
-            <p:column headerText="DATE BEGIN" width="150" style="text-align: center;">
-                <p:outputLabel value="#{category.dateBegin}">
-                    <f:convertDateTime pattern="dd.MM.yyyy HH:mm:ss"/>
-                </p:outputLabel>
-            </p:column>
-            <p:column headerText="DATE END" width="150" style="text-align: center;">
-                <p:outputLabel value="#{category.dateEnd}">
-                    <f:convertDateTime pattern="dd.MM.yyyy HH:mm:ss"/>
-                </p:outputLabel>
-            </p:column>
-            <p:column width="30" style="text-align: center;">
-                <p:link outcome="category-edit">
-                    <i class="fa fa-edit" style="font-size: 1.5em;margin: 5px;"/>
-                    <f:param name="id" value="#{category.id}"/>
-                </p:link>
-            </p:column>
-            <p:column width="30" style="text-align: center;">
-                <p:commandLink actionListener="#{categoryListController.removeCategoryById(category.id)}"
-                               update="dataTable">
-                    <i class="fa fa-trash" style="font-size: 1.5em;margin: 5px;"/>
-                </p:commandLink>
-            </p:column>
-        </p:dataTable>
-        <p:spacer height="20"/>
-        <p:outputPanel>
-            <p:button value="CREATE" outcome="category-edit"/>
-            <p:spacer width="20"/>
-            <p:commandButton value="REFRESH" update="@form"/>
-        </p:outputPanel>
+        <p:panel id="panel" header="Category list">
+            <p:dataTable id="dataTable" value="#{categoryListController.listCategory}" var="category">
+
+                <f:facet name="header">
+                    <p:outputPanel style="margin: 5px;">
+                        <p:outputLabel value="Categories"/>
+                    </p:outputPanel>
+                </f:facet>
+
+                <p:column headerText="Name" width="200">
+                    <p:outputLabel value="#{category.name}"/>
+                </p:column>
+
+                <p:column headerText="Description">
+                    <p:outputLabel value="#{category.description}"/>
+                </p:column>
+
+                <p:column headerText="Created Date" width="150" style="text-align: center;">
+                    <p:outputLabel value="#{category.created}">
+                        <f:convertDateTime pattern="dd.MM.yyyy HH:mm:ss"/>
+                    </p:outputLabel>
+                </p:column>
+
+                <p:column headerText="Updated Date" width="150" style="text-align: center;">
+                    <p:outputLabel value="#{category.updated}">
+                        <f:convertDateTime pattern="dd.MM.yyyy HH:mm:ss"/>
+                    </p:outputLabel>
+                </p:column>
+
+                <p:column width="30" style="text-align: center;">
+                    <p:link outcome="category-edit">
+                        <i class="fa fa-edit" style="font-size: 1.5em;margin: 5px;"/>
+                        <f:param name="id" value="#{category.id}"/>
+                    </p:link>
+                </p:column>
+
+                <p:column width="30" style="text-align: center;">
+                    <p:commandLink actionListener="#{categoryListController.removeCategoryById(category.id)}"
+                                   update="dataTable">
+                        <i class="fa fa-trash" style="font-size: 1.5em;margin: 5px;"/>
+                    </p:commandLink>
+                </p:column>
+            </p:dataTable>
+
+            <p:spacer height="20"/>
+
+            <p:outputPanel>
+                <p:button value="Create Category" outcome="category-edit"/>
+                <p:spacer width="20"/>
+                <p:commandButton value="Refresh" update="@form"/>
+            </p:outputPanel>
+        </p:panel>
     </h:form>
 </h:body>
 </html>

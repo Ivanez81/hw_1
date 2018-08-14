@@ -1,32 +1,25 @@
 package ru.geekbrains.enterprise.api;
 
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Date;
 
 public interface WBS {
 
-    @Nullable
+    @NotNull
     String getId();
 
-    void setId(@Nullable String id);
+    void setId(@NotNull String id);
 
-    @Nullable
+    @NotNull
     String getName();
 
-    void setName(@Nullable String name);
+    void setName(@NotNull String name);
 
     @Nullable
     String getDescription();
 
     void setDescription(@Nullable String description);
-
-    Date getDateBegin();
-
-    void setDateBegin(@Nullable Date dateBegin);
-
-    Date getDateEnd();
-
-    void setDateEnd(@Nullable Date dateEnd);
 
 }

@@ -1,8 +1,7 @@
-package ru.volnenko.enterprise.entity;
+package ru.geekbrains.enterprise.entity;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.PrePersist;

@@ -5,23 +5,23 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui" xmlns:component="http://java.sun.com/jsf/composite/component">
 <h:head>
+    <h:outputStylesheet library="css" name="style.css"/>
 </h:head>
 <f:metadata>
     <f:viewParam name="id" value="#{orderEditController.id}"/>
     <f:viewAction action="#{orderEditController.init}"/>
 </f:metadata>
 <h:body>
-
-    <ui:include src="WEB-INF/template/menu.xhtml"/>
+    <component:mainMenu/>
 
     <h:form>
         <p:panel id="panel" header="Edit order">
             <p:messages id="msg"/>
 
             <p:outputPanel>
-                <p:outputLabel value="NAME"/>
+                <p:outputLabel value="Name"/>
             </p:outputPanel>
             <p:outputPanel styleClass="ui-fluid">
                 <p:inputText value="#{orderEditController.order.name}"/>
@@ -29,26 +29,10 @@
             <p:spacer height="20"/>
 
             <p:outputPanel>
-                <p:outputLabel value="DESCRIPTION"/>
+                <p:outputLabel value="Desription"/>
             </p:outputPanel>
             <p:outputPanel styleClass="ui-fluid">
                 <p:inputText value="#{orderEditController.order.description}"/>
-            </p:outputPanel>
-            <p:spacer height="20"/>
-
-            <p:outputPanel>
-                <p:outputLabel value="DATE BEGIN"/>
-            </p:outputPanel>
-            <p:outputPanel styleClass="ui-fluid">
-                <p:calendar value="#{orderEditController.order.dateBegin}"/>
-            </p:outputPanel>
-            <p:spacer height="20"/>
-
-            <p:outputPanel>
-                <p:outputLabel value="DATE END"/>
-            </p:outputPanel>
-            <p:outputPanel styleClass="ui-fluid">
-                <p:calendar value="#{orderEditController.order.dateEnd}"/>
             </p:outputPanel>
             <p:spacer height="20"/>
 

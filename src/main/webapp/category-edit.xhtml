@@ -5,23 +5,23 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:p="http://primefaces.org/ui" xmlns:component="http://java.sun.com/jsf/composite/component">
 <h:head>
+    <h:outputStylesheet library="css" name="style.css"/>
 </h:head>
 <f:metadata>
     <f:viewParam name="id" value="#{categoryEditController.id}"/>
     <f:viewAction action="#{categoryEditController.init}"/>
 </f:metadata>
 <h:body>
+    <component:mainMenu/>
 
-    <ui:include src="WEB-INF/template/menu.xhtml"/>
-
-    <h1><p:outputLabel value="Edit category"/></h1>
     <h:form>
-        <p:panel id="panel" header="Edit order">
+        <p:panel id="panel" header="Edit category">
             <p:messages id="msg"/>
             <p:outputPanel>
-                <p:outputLabel value="NAME"/>
+                <p:outputLabel value="Name"/>
             </p:outputPanel>
             <p:outputPanel styleClass="ui-fluid">
                 <p:inputText value="#{categoryEditController.category.name}"/>
@@ -29,7 +29,7 @@
             <p:spacer height="20"/>
 
             <p:outputPanel>
-                <p:outputLabel value="DESCRIPTION"/>
+                <p:outputLabel value="Description"/>
             </p:outputPanel>
             <p:outputPanel styleClass="ui-fluid">
                 <p:inputText value="#{categoryEditController.category.description}"/>
@@ -37,27 +37,9 @@
             <p:spacer height="20"/>
 
             <p:outputPanel>
-                <p:outputLabel value="DATE BEGIN"/>
-            </p:outputPanel>
-            <p:outputPanel styleClass="ui-fluid">
-                <p:calendar value="#{categoryEditController.category.dateBegin}"/>
-            </p:outputPanel>
-            <p:spacer height="20"/>
-
-            <p:outputPanel>
-                <p:outputLabel value="DATE END"/>
-            </p:outputPanel>
-            <p:outputPanel styleClass="ui-fluid">
-                <p:calendar value="#{categoryEditController.category.dateEnd}"/>
-            </p:outputPanel>
-            <p:spacer height="20"/>
-
-            <p:outputPanel>
-                <p:commandButton value="SAVE" action="#{categoryEditController.save}" update="panel"/>
+                <p:commandButton value="Save" action="#{categoryEditController.save}" update="panel"/>
                 <p:spacer width="20"/>
-                <p:button value="RETURN" outcome="category-list">
-                    <f:param name="a" value="1"/>
-                </p:button>
+                <p:button value="Return" outcome="category-list"/>
             </p:outputPanel>
         </p:panel>
     </h:form>

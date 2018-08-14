@@ -7,12 +7,14 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://primefaces.org/ui">
 <composition:interface>
-    <composition:attribute name="showTasks" type="java.lang.Boolean" default="true" />
+
 </composition:interface>
 <composition:implementation>
     <p:menubar style="margin-bottom: 20px;">
-        <p:menuitem value="PROJECTS" outcome="project-list" />
-        <p:menuitem value="TASKS" outcome="task-list" rendered="#{cc.attrs.showTasks}" />
+        <p:menuitem value="Products" outcome="product-list"/>
+        <p:menuitem value="Categories" outcome="category-list"/>
+        <p:menuitem value="Orders" outcome="order-list"/>
+        <p:menuitem value="Exit" url="/" icon="ui-icon-close"/>
     </p:menubar>
 </composition:implementation>
 </html>
