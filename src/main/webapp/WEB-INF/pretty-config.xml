@@ -13,4 +13,24 @@
         <view-id value="/product-edit.xhtml"/>
     </url-mapping>
 
+    <url-mapping>
+        <pattern value="/category-list" />
+        <view-id value="/category-list.xhtml"/>
+    </url-mapping>
+
+    <url-mapping>
+        <pattern value="/category-edit" />
+        <view-id value="/category-edit.xhtml"/>
+    </url-mapping>
+
+    <url-mapping>
+        <pattern value="/order-list" />
+        <view-id value="/order-list.xhtml"/>
+    </url-mapping>
+
+    <url-mapping>
+        <pattern value="/order-edit" />
+        <view-id value="/order-edit.xhtml"/>
+    </url-mapping>
+
 </pretty-config>

@@ -4,50 +4,47 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import ru.geekbrains.enterprise.entity.Product;
 
-import javax.annotation.PostConstruct;
-import javax.enterprise.context.ApplicationScoped;
-import java.util.Collection;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import javax.ejb.Stateless;
+import java.util.List;
 
-@ApplicationScoped
-public class ProductDAO {
+@Stateless
+public class ProductDAO extends AbstractDAO {
 
-    @NotNull
-    private Map<String, Product> products = new LinkedHashMap<>();
-
-    @PostConstruct
-    private void init() {
-        merge(new Product("Product 1", "Demo Product 1"));
-        merge(new Product("Product 2", "Demo Product 2"));
-        merge(new Product("Product 3", "Demo Product 3"));
-        merge(new Product("Product 4", "Demo Product 4"));
+    public Product findOne(String id) {
+        return em.find(Product.class, id);
     }
 
     @NotNull
-    public Collection<Product> getProducts() {
-        return products.values();
+    public List<Product> getProducts() {
+        return em.createQuery("SELECT e FROM Product e INNER JOIN e.category c ORDER BY e.created DESC",
+                Product.class).getResultList();
     }
 
     @Nullable
     public Product getProductById(@Nullable final String productId) {
         if (productId == null || productId.isEmpty()) return null;
-        return products.get(productId);
+        return getEntity(em.createQuery("SELECT e FROM Product e WHERE e.id = :id", Product.class)
+                .setParameter("id", productId)
+                .setMaxResults(1));
+    }
+
+    @Nullable
+    public Product persist(@Nullable final Product product) {
+        if (product == null) return null;
+        em.persist(product);
+        return product;
     }
 
     @Nullable
     public Product merge(@Nullable final Product product) {
         if (product == null) return null;
-        @Nullable final String id = product.getId();
-        if (id == null || id.isEmpty()) return null;
-        this.products.put(id, product);
-        return product;
+        return em.merge(product);
     }
 
     public void removeProductById(@Nullable final String productId) {
-        if (productId == null || productId.isEmpty()) return;
-        if (!products.containsKey(productId)) return;
-        products.remove(productId);
+        @Nullable final Product product = getProductById(productId);
+        if (product == null) return;
+        em.remove(product);
     }
 
 }

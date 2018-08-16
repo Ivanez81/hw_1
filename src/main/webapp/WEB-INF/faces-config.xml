@@ -20,6 +20,24 @@
             <from-outcome>product-edit</from-outcome>
             <to-view-id>/product-edit.xhtml</to-view-id>
         </navigation-case>
+
+        <navigation-case>
+            <from-outcome>category-list</from-outcome>
+            <to-view-id>/category-list.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>category-edit</from-outcome>
+            <to-view-id>/category-edit.xhtml</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>category-list</from-outcome>
+            <to-view-id>/category-list.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>category-edit</from-outcome>
+            <to-view-id>/category-edit.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
 
 </faces-config>

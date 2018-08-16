@@ -3,51 +3,46 @@ package ru.geekbrains.enterprise.dao;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import ru.geekbrains.enterprise.entity.Order;
+import javax.ejb.Stateful;
+import java.util.List;
 
-import javax.annotation.PostConstruct;
-import javax.enterprise.context.ApplicationScoped;
-import java.util.Collection;
-import java.util.LinkedHashMap;
-import java.util.Map;
+@Stateful
+public class OrderDAO extends AbstractDAO{
 
-@ApplicationScoped
-public class OrderDAO {
-
-    @NotNull
-    private Map<String, Order> orders = new LinkedHashMap<>();
-
-    @PostConstruct
-    private void init() {
-        merge(new Order("Order 1", "Demo Order 1"));
-        merge(new Order("Order 2", "Demo Order 2"));
-        merge(new Order("Order 3", "Demo Order 3"));
-        merge(new Order("Order 4", "Demo Order 4"));
+    public Order findOne(String id) {
+        return em.find(Order.class, id);
     }
 
     @NotNull
-    public Collection<Order> getOrders() {
-        return orders.values();
+    public List<Order> getOrders() {
+        return em.createQuery("SELECT e FROM Order e ORDER BY e.created DESC", Order.class).getResultList();
     }
 
     @Nullable
     public Order getOrderById(@Nullable final String orderId) {
         if (orderId == null || orderId.isEmpty()) return null;
-        return orders.get(orderId);
+        return getEntity(em.createQuery("SELECT e FROM Order e WHERE e.id = :id", Order.class)
+                .setParameter("id", orderId)
+                .setMaxResults(1));
+    }
+
+    @Nullable
+    public Order persist(@Nullable final Order order) {
+        if (order == null) return null;
+        em.persist(order);
+        return order;
     }
 
     @Nullable
     public Order merge(@Nullable final Order order) {
         if (order == null) return null;
-        @Nullable final String id = order.getId();
-        if (id == null || id.isEmpty()) return null;
-        this.orders.put(id, order);
-        return order;
+        return em.merge(order);
     }
 
     public void removeOrderById(@Nullable final String orderId) {
-        if (orderId == null || orderId.isEmpty()) return;
-        if (!orders.containsKey(orderId)) return;
-        orders.remove(orderId);
+        @Nullable final Order order = getOrderById(orderId);
+        if (order == null) return;
+        em.remove(order);
     }
 
 }

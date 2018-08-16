@@ -3,51 +3,60 @@ package ru.geekbrains.enterprise.dao;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import ru.geekbrains.enterprise.entity.Category;
+import ru.geekbrains.enterprise.entity.Product;
 
-import javax.annotation.PostConstruct;
-import javax.enterprise.context.ApplicationScoped;
-import java.util.Collection;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import javax.ejb.Stateless;
+import java.util.List;
 
-@ApplicationScoped
-public class CategoryDAO {
+@Stateless
+public class CategoryDAO extends AbstractDAO{
 
-    @NotNull
-    private Map<String, Category> categorys = new LinkedHashMap<>();
-
-    @PostConstruct
-    private void init() {
-        merge(new Category("Category 1", "Demo Category 1"));
-        merge(new Category("Category 2", "Demo Category 2"));
-        merge(new Category("Category 3", "Demo Category 3"));
-        merge(new Category("Category 4", "Demo Category 4"));
+    public Category findOne(String id) {
+        return em.find(Category.class, id);
     }
 
     @NotNull
-    public Collection<Category> getCategorys() {
-        return categorys.values();
+    public List<Category> getCategories() {
+        return em.createQuery("SELECT e FROM Category e ORDER BY e.name ASC", Category.class).getResultList();
+    }
+
+    public List<String> getCategoriesName() {
+        return em.createQuery("SELECT e.name FROM Category e ORDER BY e.name ASC", String.class).getResultList();
     }
 
     @Nullable
     public Category getCategoryById(@Nullable final String categoryId) {
         if (categoryId == null || categoryId.isEmpty()) return null;
-        return categorys.get(categoryId);
+        return getEntity(em.createQuery("SELECT e FROM Category e WHERE e.id = :id", Category.class)
+                .setParameter("id", categoryId)
+                .setMaxResults(1));
+    }
+
+    @Nullable
+    public Category getCategoryIdByName(@Nullable final String categoryName) {
+        if (categoryName == null || categoryName.isEmpty()) return null;
+        return getEntity(em.createQuery("SELECT e FROM Category e WHERE e.name = :name", Category.class)
+                .setParameter("name", categoryName)
+                .setMaxResults(1));
+    }
+
+    @Nullable
+    public Category persist(@Nullable final Category category) {
+        if (category == null) return null;
+        em.persist(category);
+        return category;
     }
 
     @Nullable
     public Category merge(@Nullable final Category category) {
         if (category == null) return null;
-        @Nullable final String id = category.getId();
-        if (id == null || id.isEmpty()) return null;
-        this.categorys.put(id, category);
-        return category;
+        return em.merge(category);
     }
 
     public void removeCategoryById(@Nullable final String categoryId) {
-        if (categoryId == null || categoryId.isEmpty()) return;
-        if (!categorys.containsKey(categoryId)) return;
-        categorys.remove(categoryId);
+        @Nullable final Category category = getCategoryById(categoryId);
+        if (category == null) return;
+        em.remove(category);
     }
 
 }

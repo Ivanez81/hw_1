@@ -4,68 +4,42 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import ru.geekbrains.enterprise.api.WBS;
 
-import javax.validation.constraints.Future;
-import javax.validation.constraints.Past;
-import javax.validation.constraints.Size;
-import java.util.Date;
-import java.util.UUID;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Category implements WBS {
-
-    @Nullable
-    private String id = UUID.randomUUID().toString();
+@Entity
+public class Category extends AbstractEntity implements WBS {
 
     @NotNull
-    @Size(min = 2, message = "Minimum \'name\' size = 2 symbols")
     private String name = "";
 
     @Nullable
     private String description = "";
 
-    @Nullable
-    @Past(message = "\'Date Begin\' s.b. in the past")
-    private Date dateBegin;
-
-    @Nullable
-    @Future(message = "\'Date End\' s.b. in the future")
-    private Date dateEnd;
-
-    @Nullable
-    public Date getDateBegin() {
-        return dateBegin;
-    }
-
-    public void setDateBegin(@Nullable final Date dateBegin) {
-        this.dateBegin = dateBegin;
-    }
-
-    @Nullable
-    public Date getDateEnd() {
-        return dateEnd;
-    }
-
-    public void setDateEnd(@Nullable final Date dateEnd) {
-        this.dateEnd = dateEnd;
-    }
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Product> products = new ArrayList<>();
 
     public Category() {
     }
 
-    public Category(@Nullable final String name) {
+    public Category(@NotNull final String name) {
         this.name = name;
     }
 
-    public Category(@Nullable final String name, @Nullable String description) {
+    public Category(@NotNull final String name, @Nullable String description) {
         this.name = name;
         this.description = description;
     }
 
-    @Nullable
+    @NotNull
     public String getName() {
         return name;
     }
 
-    public void setName(@Nullable final String name) {
+    public void setName(@NotNull final String name) {
         this.name = name;
     }
 
@@ -79,13 +53,11 @@ public class Category implements WBS {
     }
 
     @Nullable
-    public String getId() {
-        return id;
+    public List<Product> getProducts() {
+        return products;
     }
 
-    public void setId(@Nullable final String id) {
-        this.id = id;
+    public void setProducts(@Nullable List<Product> products) {
+        this.products = products;
     }
-
-
 }
