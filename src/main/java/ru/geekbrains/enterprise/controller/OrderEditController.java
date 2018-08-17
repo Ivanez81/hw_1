@@ -4,9 +4,13 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import ru.geekbrains.enterprise.dao.OrderDAO;
 import ru.geekbrains.enterprise.entity.Order;
+import ru.geekbrains.enterprise.entity.Product;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
+import java.util.ArrayList;
+import java.util.List;
 
 @ViewScoped
 @ManagedBean

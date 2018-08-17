@@ -2,14 +2,14 @@ package ru.geekbrains.enterprise.entity;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import ru.geekbrains.enterprise.api.WBS;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "Orders")
-public class Order extends AbstractEntity implements WBS {
+public class Order extends AbstractEntity {
 
     @NotNull
     private String name = "";
@@ -17,7 +17,7 @@ public class Order extends AbstractEntity implements WBS {
     @Nullable
     private String description = "";
 
-    @ManyToMany(mappedBy = "orders", cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "orders", cascade = CascadeType.ALL)
     private List<Product> products = new ArrayList<>();
 
     public Order() {

@@ -3,10 +3,12 @@ package ru.geekbrains.enterprise.dao;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import ru.geekbrains.enterprise.entity.Order;
-import javax.ejb.Stateful;
+import ru.geekbrains.enterprise.entity.Product;
+
+import javax.ejb.Stateless;
 import java.util.List;
 
-@Stateful
+@Stateless
 public class OrderDAO extends AbstractDAO{
 
     public Order findOne(String id) {
@@ -17,6 +19,13 @@ public class OrderDAO extends AbstractDAO{
     public List<Order> getOrders() {
         return em.createQuery("SELECT e FROM Order e ORDER BY e.created DESC", Order.class).getResultList();
     }
+
+//    @Nullable
+//    public List<?> getProductByOrderId(@Nullable final String orderId) {
+//        if (orderId == null || orderId.isEmpty()) return null;
+//        return getEntity(em.createQuery("SELECT e.products FROM Order e WHERE e.id = :id", List.class)
+//                .setParameter("id", orderId));
+//    }
 
     @Nullable
     public Order getOrderById(@Nullable final String orderId) {

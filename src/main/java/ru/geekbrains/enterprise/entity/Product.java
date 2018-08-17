@@ -2,20 +2,20 @@ package ru.geekbrains.enterprise.entity;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import ru.geekbrains.enterprise.api.WBS;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Product extends AbstractEntity implements WBS {
+public class Product extends AbstractEntity {
 
     @ManyToMany
+    @JoinColumn(nullable = true, name = "orders_id")
     private List<Order> orders = new ArrayList<>();
 
     @ManyToOne
-//    @JoinColumn(name = "id")
+    @JoinColumn(nullable = true, name = "category_id")
     private Category category;
 
     @NotNull
