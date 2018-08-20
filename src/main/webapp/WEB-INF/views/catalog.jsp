@@ -2,6 +2,7 @@
 <%@ page import="ru.geekbrains.enterprise.entity.Product" %>
 <%@ page import="java.util.Collection" %>
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
+<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -15,33 +16,27 @@
 
     <article>
         <p>Catalog page servlet</p>
+        <sql:setDataSource var="javaee" driver="com.mysql.jdbc.Driver"
+                           url="jdbc:mysql://localhost/javaee"
+                           user="root" password="3a3LHvDI"/>
 
-        <%
-            final Object productsObject = request.getAttribute(FieldConst.PRODUCTS);
-            final Collection<Product> products = (Collection<Product>) productsObject;
-        %>
+        <sql:query var="result" dataSource="${javaee}">
+            SELECT * from product;
+        </sql:query>
 
         <div class="product-figures">
+            <c:forEach var="test" items="${result.rows}">
+                <a href="#">
+                    <figure>
+                        <p><c:out value="${test.name}"/></p>
+                        <figcaption>
+                            <p><c:out value="${test.description}"/></p>
+                        </figcaption>
+                    </figure>
+                </a>
 
-            <% int index = 1; %>
-            <% for (final Product product : products) { %>
-
-            <a href="#">
-                <figure>
-                    <p><%=index%>, <%=product.getName()%>
-                    </p>
-                    <figcaption>
-                        <p><%=product.getDescription()%>
-                        </p>
-                    </figcaption>
-                </figure>
-            </a>
-
-            <% index++; %>
-            <% } %>
-
+            </c:forEach>
         </div>
-
 
     </article>
 

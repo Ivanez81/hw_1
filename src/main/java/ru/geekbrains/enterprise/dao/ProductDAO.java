@@ -5,6 +5,7 @@ import org.jetbrains.annotations.Nullable;
 import ru.geekbrains.enterprise.entity.Product;
 
 import javax.ejb.Stateless;
+import java.util.Collections;
 import java.util.List;
 
 @Stateless
@@ -12,6 +13,25 @@ public class ProductDAO extends AbstractDAO {
 
     public Product findOne(String id) {
         return em.find(Product.class, id);
+    }
+
+    @NotNull
+    public List<Product> getListProduct() {
+        return em.createQuery("SELECT p FROM Product p ORDER BY p.name DESC ", Product.class).getResultList();
+    }
+
+    @Nullable
+    public List<Product> getListProductByOrderId(@Nullable final String orderId) {
+        if (orderId == null || orderId.isEmpty()) return Collections.emptyList();
+        return em.createQuery("SELECT p FROM Product p WHERE :orderId IN (p.orders) ORDER BY p.name",
+                Product.class).setParameter("orderId", orderId).getResultList();
+    }
+
+    @Nullable
+    public List<Product> getProductsByCategoryId(final String categoryId) {
+        if (categoryId == null || categoryId.isEmpty()) return Collections.emptyList();
+        return em.createQuery("SELECT p FROM Product p WHERE p.category.id = :categoryId ORDER BY p.name",
+                Product.class).setParameter("categoryId", categoryId).getResultList();
     }
 
     @NotNull

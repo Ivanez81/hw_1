@@ -5,10 +5,15 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui" xmlns:component="http://java.sun.com/jsf/composite/component">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:component="http://java.sun.com/jsf/composite/component">
 <h:head>
     <h:outputStylesheet library="css" name="style.css"/>
 </h:head>
+<f:metadata>
+    <f:viewParam name="orderId" value="#{productListController.orderId}" />
+    <f:viewParam name="categoryId" value="#{productListController.categoryId}" />
+</f:metadata>
 <h:body>
     <component:mainMenu/>
 
@@ -31,7 +36,7 @@
                 </p:column>
 
                 <p:column headerText="Category">
-                    <p:outputLabel value="#{product.category}"/>
+                    <p:outputLabel value="#{product.category.name}"/>
                 </p:column>
 
                 <p:column headerText="Created Date" width="150" style="text-align: center;">

@@ -2,16 +2,16 @@ package ru.geekbrains.enterprise.entity;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import ru.geekbrains.enterprise.api.WBS;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Category extends AbstractEntity implements WBS {
+public class Category extends AbstractEntity {
 
     @NotNull
     private String name = "";
@@ -19,7 +19,7 @@ public class Category extends AbstractEntity implements WBS {
     @Nullable
     private String description = "";
 
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Product> products = new ArrayList<>();
 
     public Category() {
