@@ -11,7 +11,7 @@ import java.util.List;
 public class Product extends AbstractEntity {
 
     @ManyToMany
-    @JoinColumn(nullable = true, name = "orders_id")
+    @JoinColumn(nullable = true, name = "id")
     private List<Order> orders = new ArrayList<>();
 
     @ManyToOne

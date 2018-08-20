@@ -59,11 +59,12 @@ public class ProductEditController {
         this.id = id;
     }
 
+    @Nullable
     public String getCategoryName() {
         return categoryName;
     }
 
-    public void setCategoryName(String categoryName) {
+    public void setCategoryName(@Nullable final String categoryName) {
         this.categoryName = categoryName;
     }
 }

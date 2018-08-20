@@ -20,11 +20,18 @@ public class ProductDAO extends AbstractDAO {
         return em.createQuery("SELECT p FROM Product p ORDER BY p.name DESC ", Product.class).getResultList();
     }
 
-    @NotNull
+    @Nullable
     public List<Product> getListProductByOrderId(@Nullable final String orderId) {
         if (orderId == null || orderId.isEmpty()) return Collections.emptyList();
         return em.createQuery("SELECT p FROM Product p WHERE :orderId IN (p.orders) ORDER BY p.name",
                 Product.class).setParameter("orderId", orderId).getResultList();
+    }
+
+    @Nullable
+    public List<Product> getProductsByCategoryId(final String categoryId) {
+        if (categoryId == null || categoryId.isEmpty()) return Collections.emptyList();
+        return em.createQuery("SELECT p FROM Product p WHERE p.category.id = :categoryId ORDER BY p.name",
+                Product.class).setParameter("categoryId", categoryId).getResultList();
     }
 
     @NotNull

@@ -44,6 +44,13 @@
                 </p:column>
 
                 <p:column width="30" style="text-align: center;">
+                    <p:link outcome="product-list" target="_blank">
+                        <i class="fa fa-bars" style="font-size: 1.5em; margin: 5px;" />
+                        <f:param name="categoryId" value="#{category.id}" />
+                    </p:link>
+                </p:column>
+
+                <p:column width="30" style="text-align: center;">
                     <p:link outcome="category-edit">
                         <i class="fa fa-edit" style="font-size: 1.5em;margin: 5px;"/>
                         <f:param name="id" value="#{category.id}"/>

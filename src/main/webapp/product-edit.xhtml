@@ -41,8 +41,9 @@
                 <p:outputLabel value="Categoty"/>
             </p:outputPanel>
             <p:outputPanel styleClass="ui-fluid">
-                <p:selectOneMenu id="category" value="#{productEditController.categoryName}">
-                    <f:selectItem itemLabel="Select Category" itemValue="" />
+                <p:selectOneMenu id="category" value="#{productEditController.categoryName}" effect="fold"
+                                 style="width:450px">
+                    <f:selectItem itemLabel="Current Category" itemValue="Current" />
                     <f:selectItems value="#{categoryListController.categoriesName}" />
                 </p:selectOneMenu>
             </p:outputPanel>
