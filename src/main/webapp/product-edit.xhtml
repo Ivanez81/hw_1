@@ -22,10 +22,14 @@
             <p:messages id="msg"/>
 
             <p:outputPanel>
-                <p:outputLabel value="Name"/>
+                <p:outputLabel for="name" value="Name"/>
             </p:outputPanel>
             <p:outputPanel styleClass="ui-fluid">
-                <p:inputText value="#{productEditController.product.name}"/>
+                <p:inputText id="name" value="#{productEditController.product.name}">
+                    <f:validateLength minimum="2" />
+                    <p:ajax update="msgName" event="keyup" />
+                </p:inputText>
+                <p:message for="name" id="msgName" display="icon"/>
             </p:outputPanel>
             <p:spacer height="20"/>
 
@@ -38,16 +42,15 @@
             <p:spacer height="20"/>
 
             <p:outputPanel>
-                <p:outputLabel value="Categoty"/>
+                <p:outputLabel value="Category"/>
             </p:outputPanel>
             <p:outputPanel styleClass="ui-fluid">
                 <p:selectOneMenu id="category" value="#{productEditController.categoryName}" effect="fold"
                                  style="width:450px">
-                    <f:selectItem itemLabel="Current Category" itemValue="Current" />
-                    <f:selectItems value="#{categoryListController.categoriesName}" />
+                    <f:selectItem itemLabel="#{productEditController.currentCategory}" itemValue=""/>
+                    <f:selectItems value="#{categoryListController.categoriesName}"/>
                 </p:selectOneMenu>
             </p:outputPanel>
-
             <p:spacer height="20"/>
 
             <p:outputPanel>

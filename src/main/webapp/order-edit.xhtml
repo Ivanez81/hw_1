@@ -40,6 +40,13 @@
             <p:outputPanel>
                 <p:outputLabel value="List of Products"/>
             </p:outputPanel>
+
+            <p:selectCheckboxMenu id="multiple" value="#{orderEditController.productNames}" label="Select Products"
+                                  multiple="true" filter="true" filterMatchMode="startsWith" style="width: 450px"
+                                  panelStyle="width: 450px">
+                <f:selectItems value="#{orderEditController.listProductName}"/>
+            </p:selectCheckboxMenu>
+
             <p:spacer height="20"/>
 
             <p:outputPanel>

@@ -67,4 +67,10 @@ public class ProductEditController {
     public void setCategoryName(@Nullable final String categoryName) {
         this.categoryName = categoryName;
     }
+
+    @Nullable
+    public String getCurrentCategory() {
+        if (id == null) return null;
+        return productDAO.getCategoryById(id);
+    }
 }

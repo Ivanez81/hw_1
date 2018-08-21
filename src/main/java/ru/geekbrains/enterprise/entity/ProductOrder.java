@@ -4,49 +4,34 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import java.util.UUID;
+import javax.persistence.ManyToOne;
 
 @Entity
-@Table(name = "product_orders")
-public class ProductOrder {
-    @Id
-    @NotNull
-    private String id = UUID.randomUUID().toString();
+public class ProductOrder extends AbstractEntity {
 
-    @Nullable
-    private String products_id;
+    @ManyToOne
+    private Order order;
 
-    @Nullable
-    private String orders_id;
+    @ManyToOne
+    private Product product;
 
     @NotNull
-    public String getId() {
-        return id;
+    public Order getOrder() {
+        return order;
     }
 
-    public void setId(@NotNull String id) {
-        this.id = id;
-    }
-
-    @Nullable
-    public String getProducts_id() {
-        return products_id;
-    }
-
-    public void setProducts_id(@Nullable String products_id) {
-        this.products_id = products_id;
+    public void setOrder(@NotNull final Order order) {
+        this.order = order;
     }
 
     @Nullable
-    public String getOrders_id() {
-        return orders_id;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setOrders_id(@Nullable String orders_id) {
-        this.orders_id = orders_id;
+    public void setProduct(@Nullable final Product product) {
+        if (product == null) return;
+        this.product = product;
     }
-
 
 }
