@@ -11,8 +11,8 @@
     <h:outputStylesheet library="css" name="style.css"/>
 </h:head>
 <f:metadata>
-    <f:viewParam name="orderId" value="#{productListController.orderId}" />
-    <f:viewParam name="categoryId" value="#{productListController.categoryId}" />
+    <f:viewParam name="orderId" value="#{productListController.orderId}"/>
+    <f:viewParam name="categoryId" value="#{productListController.categoryId}"/>
 </f:metadata>
 <h:body>
     <component:mainMenu/>
@@ -59,7 +59,8 @@
                 </p:column>
 
                 <p:column width="30" style="text-align: center;">
-                    <p:commandLink actionListener="#{productListController.removeProductById(product.id)}"
+                    <p:commandLink actionListener="#{productListController.removeProductById(product.id,
+                                                    productListController.orderId)}"
                                    update="dataTable">
                         <i class="fa fa-trash" style="font-size: 1.5em;margin: 5px;"/>
                     </p:commandLink>

@@ -3,12 +3,14 @@ package ru.geekbrains.enterprise.dao;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import ru.geekbrains.enterprise.entity.Category;
-import ru.geekbrains.enterprise.entity.Product;
+import ru.geekbrains.enterprise.interceptor.LogInterceptor;
 
 import javax.ejb.Stateless;
+import javax.interceptor.Interceptors;
 import java.util.List;
 
 @Stateless
+@Interceptors({LogInterceptor.class})
 public class CategoryDAO extends AbstractDAO{
 
     public Category findOne(String id) {
@@ -27,8 +29,8 @@ public class CategoryDAO extends AbstractDAO{
     @Nullable
     public Category getCategoryById(@Nullable final String categoryId) {
         if (categoryId == null || categoryId.isEmpty()) return null;
-        return getEntity(em.createQuery("SELECT e FROM Category e WHERE e.id = :id", Category.class)
-                .setParameter("id", categoryId)
+        return getEntity(em.createQuery("SELECT e FROM Category e WHERE e.id = :categoryId", Category.class)
+                .setParameter("categoryId", categoryId)
                 .setMaxResults(1));
     }
 

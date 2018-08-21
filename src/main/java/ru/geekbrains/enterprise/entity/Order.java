@@ -4,8 +4,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "Orders")
@@ -16,9 +14,6 @@ public class Order extends AbstractEntity {
 
     @Nullable
     private String description = "";
-
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "orders", cascade = CascadeType.ALL)
-    private List<Product> products = new ArrayList<>();
 
     public Order() {
     }
@@ -50,12 +45,4 @@ public class Order extends AbstractEntity {
         this.description = description;
     }
 
-    @NotNull
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(@NotNull List<Product> products) {
-        this.products = products;
-    }
 }

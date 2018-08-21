@@ -3,13 +3,15 @@ package ru.geekbrains.enterprise.dao;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import ru.geekbrains.enterprise.entity.Order;
-import ru.geekbrains.enterprise.entity.Product;
+import ru.geekbrains.enterprise.interceptor.LogInterceptor;
 
 import javax.ejb.Stateless;
+import javax.interceptor.Interceptors;
 import java.util.List;
 
 @Stateless
-public class OrderDAO extends AbstractDAO{
+@Interceptors({LogInterceptor.class})
+public class OrderDAO extends AbstractDAO {
 
     public Order findOne(String id) {
         return em.find(Order.class, id);
@@ -20,18 +22,11 @@ public class OrderDAO extends AbstractDAO{
         return em.createQuery("SELECT e FROM Order e ORDER BY e.created DESC", Order.class).getResultList();
     }
 
-//    @Nullable
-//    public List<?> getProductByOrderId(@Nullable final String orderId) {
-//        if (orderId == null || orderId.isEmpty()) return null;
-//        return getEntity(em.createQuery("SELECT e.products FROM Order e WHERE e.id = :id", List.class)
-//                .setParameter("id", orderId));
-//    }
-
     @Nullable
     public Order getOrderById(@Nullable final String orderId) {
         if (orderId == null || orderId.isEmpty()) return null;
-        return getEntity(em.createQuery("SELECT e FROM Order e WHERE e.id = :id", Order.class)
-                .setParameter("id", orderId)
+        return getEntity(em.createQuery("SELECT e FROM Order e WHERE e.id = :orderId", Order.class)
+                .setParameter("orderId", orderId)
                 .setMaxResults(1));
     }
 

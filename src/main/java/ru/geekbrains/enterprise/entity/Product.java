@@ -4,15 +4,9 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 public class Product extends AbstractEntity {
-
-    @ManyToMany
-    @JoinColumn(nullable = true, name = "id")
-    private List<Order> orders = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(nullable = true, name = "category_id")
@@ -52,15 +46,6 @@ public class Product extends AbstractEntity {
 
     public void setDescription(@Nullable final String description) {
         this.description = description;
-    }
-
-    @NotNull
-    public List<Order> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(@NotNull List<Order> orders) {
-        this.orders = orders;
     }
 
     @Nullable

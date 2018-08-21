@@ -16,11 +16,8 @@
 
     <article>
         <p>Catalog page servlet</p>
-        <sql:setDataSource var="javaee" driver="com.mysql.jdbc.Driver"
-                           url="jdbc:mysql://localhost/javaee"
-                           user="root" password="3a3LHvDI"/>
 
-        <sql:query var="result" dataSource="${javaee}">
+        <sql:query var="result" dataSource="jdbc/JavaEEDS">
             SELECT * from product;
         </sql:query>
 

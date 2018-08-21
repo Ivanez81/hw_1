@@ -20,19 +20,28 @@
     <h:form>
         <p:panel id="panel" header="Edit category">
             <p:messages id="msg"/>
+
             <p:outputPanel>
-                <p:outputLabel value="Name"/>
+                <p:outputLabel for="name" value="Name"/>
             </p:outputPanel>
             <p:outputPanel styleClass="ui-fluid">
-                <p:inputText value="#{categoryEditController.category.name}"/>
+                <p:inputText id="name" value="#{categoryEditController.category.name}">
+                    <f:validateLength minimum="2"/>
+                    <p:ajax update="msgName" event="keyup"/>
+                </p:inputText>
+                <p:message for="name" id="msgName" display="icon"/>
             </p:outputPanel>
             <p:spacer height="20"/>
 
             <p:outputPanel>
-                <p:outputLabel value="Description"/>
+                <p:outputLabel for="description" value="Description"/>
             </p:outputPanel>
             <p:outputPanel styleClass="ui-fluid">
-                <p:inputText value="#{categoryEditController.category.description}"/>
+                <p:inputText id="description" value="#{categoryEditController.category.description}">
+                    <f:validateLength minimum="10"/>
+                    <p:ajax update="msgDescription" event="keyup"/>
+                </p:inputText>
+                <p:message for="description" id="msgDescription" display="icon"/>
             </p:outputPanel>
             <p:spacer height="20"/>
 
