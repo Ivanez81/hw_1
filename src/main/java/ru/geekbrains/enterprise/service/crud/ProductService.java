@@ -13,6 +13,7 @@ import javax.jws.WebParam;
 import javax.jws.WebService;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -89,7 +90,7 @@ public class ProductService {
 
     @POST
     @NotNull
-    @Path("removeProductById")
+    @Path("/removeProductById")
     @WebMethod(operationName = "removeProductById")
     @Produces(MediaType.APPLICATION_JSON)
     public ResultDTO removeProductById(
