@@ -27,7 +27,7 @@ public class ProductDAO extends AbstractDAO {
 
     @NotNull
     public List<Product> getListProduct() {
-        return em.createQuery("SELECT p FROM Product p ORDER BY p.name DESC ", Product.class).getResultList();
+        return em.createQuery("SELECT p FROM Product p ORDER BY p.name ASC ", Product.class).getResultList();
     }
 
     @Nullable

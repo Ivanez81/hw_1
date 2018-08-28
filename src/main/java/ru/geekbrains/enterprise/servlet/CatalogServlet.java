@@ -23,6 +23,6 @@ public class CatalogServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         final Collection<Product> products = productDAO.getProducts();
         req.setAttribute(FieldConst.PRODUCTS, products);
-        req.getRequestDispatcher("WEB-INF/views/catalog.jsp").forward(req,resp);
+        req.getRequestDispatcher("WEB-INF/views/catalog-vue.jsp").forward(req,resp);
     }
 }

@@ -116,6 +116,10 @@ footer a:hover {
 
 .product-figures {
     display: flex;
+}
+
+#p-list {
+    display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
 }
